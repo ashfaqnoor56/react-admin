@@ -10,6 +10,8 @@ const Products = () => {
   const navigate = useNavigate();
   const [APIData, setAPIData] = useState([]);
   const [storage, setStorage] = useState("");
+  
+  
   useEffect(() => {
     axios
       .get(`https://673c367596b8dcd5f3f8edea.mockapi.io/productapi`)
@@ -38,7 +40,7 @@ const Products = () => {
     let datas = {id, name, price, image, listType}
     console.log(datas);
     
-      navigate(`/UpdatePro/${id}`)
+      navigate(`/update/${id}`)
   };
   useEffect(() => {
     let User = localStorage.getItem("email");

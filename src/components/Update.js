@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 
-const AddProduct = () => {
+
+
+const Update = () => {
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [image, setImage] = useState("");
@@ -13,24 +15,46 @@ const AddProduct = () => {
   const [apiData, setAPIData] = useState([]);
   const [description, setDescription] = useState("")
   // console.log(apiData);
+  const {id} = useParams();
 
   const navigate = useNavigate()
+
+  useEffect(() => {
+    axios
+      .get("https://673c367596b8dcd5f3f8edea.mockapi.io/productapi")
+      .then((getData) => {
+        let data = getData.data;
+        let filter = data.filter((items) => items.id == id);
+
+        console.log(filter);
+        console.log(data);
+
+        if (filter.length > 0) {
+          setName(filter[0].name);
+          setPrice(filter[0].price);
+          setImage(filter[0].image);
+          setListingType(filter[0].listingType);
+          setDescription(filter[0].description);
+        } else {
+          console.log("Product with this id not found.");
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, [id]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    axios.post("https://673c367596b8dcd5f3f8edea.mockapi.io/productapi", {
+    axios.put(`https://673c367596b8dcd5f3f8edea.mockapi.io/productapi/${id}`, {
       name,
       price,
       image,
       description,
       listingType
     });
-    localStorage.setItem("Name", name)
-    localStorage.setItem("Price", price)
-    localStorage.setItem("Image", image)
-    localStorage.setItem("ImageData", imageData)
-    localStorage.setItem("ListingType", listingType)
+   
     setName("");
     setPrice("");
     setImage("");
@@ -38,6 +62,7 @@ const AddProduct = () => {
     setDescription("");
     setListingType("others");
     navigate("/")
+
   };
 
   const handleImageChange = (e) => {
@@ -70,6 +95,8 @@ const AddProduct = () => {
       });
   };
 
+  let Giturl = "https://raw.githubusercontent.com/ashfaqnoor56/reactproject-1/refs/heads/main/src/components/images.js/"
+
 
   return (
     <div className="container w-50 m-auto vh-100 d-flex flex-column justify-content-center">
@@ -81,7 +108,7 @@ const AddProduct = () => {
           alignItems: "center",
         }}
       >
-        <h2 className="mt-3 mb-4">Add New Products</h2>
+        <h2 className="mt-3 mb-4">Update Products</h2>
       </div>
 
       <form onSubmit={handleSubmit}>
@@ -99,9 +126,9 @@ const AddProduct = () => {
           />
         </div>
 
-        {imageData && (
+        {image && (
           <img
-            src={imageData}
+            src={Giturl+image}
             alt="Selected"
             className="img-fluid mb-3"
             style={{ maxWidth: "200px" }}
@@ -182,4 +209,4 @@ const AddProduct = () => {
   );
 };
 
-export default AddProduct;
+export default Update;
