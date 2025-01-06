@@ -38,7 +38,7 @@ function Login() {
           }
         }
       } else {
-        toast.error("please fill the password");
+        toast.error("please fill the p  assword");
       }
     } else {
       toast.error("please fill the email");
@@ -77,7 +77,7 @@ function Login() {
         </Button>
       </Form>
 
-      <a href='./Signup'>Not a User? Sign Up</a>
+      <Link to='./Signup'>Not a User? Sign Up</Link>
       <ToastContainer
         position="top-right"
         autoClose={3000}

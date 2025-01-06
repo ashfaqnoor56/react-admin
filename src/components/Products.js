@@ -47,7 +47,6 @@ const Products = () => {
     setStorage(User);
   }, []);
   if (!storage) {
-    toast.error("Error updating");
     navigate("/Login");
 
   }
