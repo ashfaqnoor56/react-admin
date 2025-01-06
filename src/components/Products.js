@@ -43,7 +43,7 @@ const Products = () => {
       navigate(`/update/${id}`)
   };
   useEffect(() => {
-    let User = localStorage.getItem("email");
+    let User = sessionStorage.getItem("email");
     setStorage(User);
   }, []);
   if (!storage) {

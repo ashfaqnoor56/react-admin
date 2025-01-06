@@ -31,7 +31,7 @@ function Login() {
         } else {
           if (password == filterData[0]?.password) {
             toast.success("login successfully");
-            localStorage.setItem('email', filterData)
+            sessionStorage.setItem('email', filterData)
             navigate("/");
           } else {
             toast.warning("please enter correct password");

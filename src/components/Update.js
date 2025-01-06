@@ -108,7 +108,7 @@ const Update = () => {
           alignItems: "center",
         }}
       >
-        <h2 className="mt-3 mb-4">Update Products</h2>
+        <h2 className="mt-5 mb-2">Update Products</h2>
       </div>
 
       <form onSubmit={handleSubmit}>
