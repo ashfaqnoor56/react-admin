@@ -1,0 +1,27 @@
+body {
+  background-color: grey !important;
+}
+
+.login-box {
+  background-color: beige !important;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  padding: 5vw !important;
+}
+
+body {
+  background-color: grey !important;
+}
+
+.signup-box {
+  background-color: beige !important;
+  border-radius: 10px;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease-in-out;
+  font-size: 1.2vw;
+  padding: 4.5vw !important;
+}
+
+.signup-box:hover {
+  box-shadow: 0 0 35px rgba(0, 0, 0, 0.1);
+}

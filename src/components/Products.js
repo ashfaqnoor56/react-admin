@@ -64,7 +64,7 @@ const Products = () => {
             }}
           >
             <div>Product List</div>
-            <Link className="ui purple button" to="./AddProduct">
+            <Link className="ui purple button" to="/addproducts">
               Add New Products
             </Link>
           </div>

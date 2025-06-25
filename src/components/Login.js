@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Form, Button, Container } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
+import '../App.css'
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -38,7 +39,7 @@ function Login() {
           }
         }
       } else {
-        toast.error("please fill the p  assword");
+        toast.error("please fill the password");
       }
     } else {
       toast.error("please fill the email");
@@ -48,36 +49,42 @@ function Login() {
 
 
   return (
-    <Container maxWidth="xs" style={{ marginTop: '100px', width: '25%' }}>
-      <h2 className='mb-4'>Login</h2>
-      <Form onSubmit={handleSubmit}>
-        <Form.Group controlId="formBasicEmail">
-          <Form.Label>Email address</Form.Label>
-          <Form.Control
-            className='mb-4'
-            type="email"
-            placeholder="Enter email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </Form.Group>
+      <Container className="d-flex justify-content-center align-items-center min-vh-100">
+      <div className="login-box p-4 shadow rounded bg-white" style={{ width: '100%', maxWidth: '400px' }}>
+        <h2 className="mb-4 text-center text-decoration-underline">Login</h2>
+        <Form onSubmit={handleSubmit}>
+          <Form.Group controlId="formBasicEmail" className="mb-3">
+            <Form.Label>Email address</Form.Label>
+            <Form.Control
+              type="email"
+              placeholder="Enter email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </Form.Group>
 
-        <Form.Group controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            type="password"
-            placeholder="Enter password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </Form.Group>
+          <Form.Group controlId="formBasicPassword" className="mb-3">
+            <Form.Label>Password</Form.Label>
+            <Form.Control
+              type="password"
+              placeholder="Enter password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </Form.Group>
 
-        <Button variant="primary" type="submit" className='mt-3'>
-          Login
-        </Button>
-      </Form>
+          <Button variant="primary" type="submit" className="w-100 mb-3">
+            Login
+          </Button>
+        </Form>
 
-      <Link to='./Signup'>Not a User? Sign Up</Link>
+        <div className="text-center">
+          <em>
+            Not a User? <Link to="/Signup">Sign Up</Link>
+          </em>
+        </div>
+      </div>
+
       <ToastContainer
         position="top-right"
         autoClose={3000}
@@ -89,7 +96,6 @@ function Login() {
         draggable
         pauseOnHover
       />
-
     </Container>
   );
 }
